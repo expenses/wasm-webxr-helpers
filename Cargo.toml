@@ -1,0 +1,68 @@
+[package]
+name = "wasm-webxr-helpers"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+js-sys = "0.3.57"
+raw-window-handle = "0.4.3"
+wasm-bindgen = { version = "0.2.80", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4.30"
+
+[dependencies.web-sys]
+version = "0.3.36"
+features = [
+  'Document',
+  'Element',
+  'Gpu',
+  'Headers',
+  'HtmlCanvasElement',
+  'Navigator',
+  'Request',
+  'RequestInit',
+  'RequestMode',
+  'Response',
+  'WebGl2RenderingContext',
+  'Window',
+  'XrBoundedReferenceSpace',
+  'XrEye',
+  'XrFrame',
+  'XrHandedness',
+  'XrInputSource',
+  'XrInputSourceArray',
+  'XrInputSourceEvent',
+  'XrInputSourceEventInit',
+  'XrInputSourcesChangeEvent',
+  'XrPose',
+  'XrReferenceSpace',
+  'XrReferenceSpaceEvent',
+  'XrReferenceSpaceEventInit',
+  'XrReferenceSpaceType',
+  'XrRenderState',
+  'XrRenderStateInit',
+  'XrRigidTransform',
+  'XrSession',
+  'XrSessionEvent',
+  'XrSessionEventInit',
+  'XrSessionInit',
+  'XrSessionMode',
+  'XrSpace',
+  "XrSystem",
+  'XrTargetRayMode',
+  'XrView',
+  'XrViewerPose',
+  'XrViewport',
+  'XrVisibilityState',
+  'XrWebGlLayer',
+  'XrWebGlLayerInit',
+  'console',
+  "HtmlButtonElement",
+  'HtmlVideoElement',
+]
+
+
+[patch.crates-io]
+web-sys = { git = "https://github.com/expenses/wasm-bindgen", branch = "webxr-fixes" }
+wasm-bindgen = { git = "https://github.com/expenses/wasm-bindgen", branch = "webxr-fixes" }
+wasm-bindgen-shared = { git = "https://github.com/expenses/wasm-bindgen", branch = "webxr-fixes" }
+js-sys = { git = "https://github.com/expenses/wasm-bindgen", branch = "webxr-fixes" }
