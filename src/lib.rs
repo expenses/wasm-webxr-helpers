@@ -1,5 +1,9 @@
 use wasm_bindgen::JsCast;
 
+pub struct ContextCreationOptions {
+    pub stencil: bool
+}
+
 pub struct Canvas {
     pub inner: web_sys::HtmlCanvasElement,
     id: u32
@@ -34,9 +38,12 @@ impl Canvas {
 
     }
 
-    pub fn create_webgl2_context(&self) -> web_sys::WebGl2RenderingContext {
+    pub fn create_webgl2_context(&self, options: ContextCreationOptions) -> web_sys::WebGl2RenderingContext {
         let mut gl_attribs = std::collections::HashMap::new();
         gl_attribs.insert(String::from("xrCompatible"), true);
+        // WebGL silently ignores any stencil writing or testing if this is not set.
+        // (Atleast on Chrome). What a fantastic design decision.
+        gl_attribs.insert(String::from("stencil"), options.stencil);
         let js_gl_attribs = wasm_bindgen::JsValue::from_serde(&gl_attribs).unwrap();
 
         self.inner
